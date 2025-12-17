@@ -3,22 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aditya | Portfolio</title>
+    <title>Aditya | Professional Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="card">
-        <div class="profile-area">
-            <img src="https://i.postimg.cc/1tvzbL36/IMG_20250825_WA0006.jpg" alt="Aditya" class="circle">
+    <div class="glass-card">
+        <div class="image-container">
+            <img src="https://i.postimg.cc/1tvzbL36/IMG_20250825_WA0006.jpg" alt="Aditya" class="profile-img">
         </div>
         
-        <h1>Hello I'm Aditya</h1>
-        <p class="bio">This is my first website</p>
+        <h1 class="typing">Aditya</h1>
+        <p class="role">Frontend Developer & Designer</p>
 
-        <div class="links">
-            <a href="https://www.instagram.com/aditya.up72" class="insta-btn">Instagram</a>
-            <a href="#" class="contact-btn">Contact Me</a>
+        <div class="skills">
+            <span>HTML5</span>
+            <span>CSS3</span>
+            <span>Git</span>
+        </div>
+
+        <div class="social-links">
+            <a href="https://www.instagram.com/aditya.up72" class="btn insta">Instagram</a>
+        </div>
+
+        <div class="contact-form">
+            <h3>Contact Me</h3>
+            <form action="https://formspree.io/f/YOUR_ID_HERE" method="POST">
+                <input type="text" name="name" placeholder="आपका नाम" required>
+                <input type="email" name="email" placeholder="ईमेल आईडी" required>
+                <textarea name="message" placeholder="आपका संदेश" required></textarea>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
         </div>
     </div>
 
