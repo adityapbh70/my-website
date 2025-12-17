@@ -55,3 +55,12 @@ p { color: #666; font-size: 14px; margin-bottom: 25px; }
 }
 
 .links a:hover { transform: scale(1.05); }
+.photo-container{
+    text-align: center;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #007bfff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0,2)
+}
