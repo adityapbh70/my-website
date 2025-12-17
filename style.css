@@ -1,0 +1,28 @@
+h1 {
+    color: blue;
+    font-size: 40px;
+    text-align: center;
+}
+p{
+    color: #333;
+    font-family: arial, sans-serif;
+}
+body{
+    background-color: #f4f4f4;
+    font-family: 'Arial', sans-serif;
+}
+h1{
+    background: #333;
+    color: white;
+    padding: 15px;
+    text-decoration: center;
+}
+p{
+    border: 2px solid red;
+    padding: 10px;
+    margin: 20px;
+}
+img{
+    border: 5px solid #007bff;
+    border-radius: 10px;
+}
