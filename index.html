@@ -1,6 +1,52 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
+    <!DOCTYPE html>
+<html>
+<head>
+    <title>Insta Link Generator</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+        input { padding: 10px; width: 250px; border: 1px solid #ccc; border-radius: 5px; }
+        button { padding: 10px 20px; background-color: #E1306C; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        #result { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h2>Instagram Profile Finder</h2>
+    
+    <input type="text" id="instaID" placeholder="Instagram ID daalein (e.g. virat.kohli)">
+    
+    <button onclick="generateLink()">Link Banayein</button>
+
+    <div id="result">
+        </div>
+
+    <script>
+        function generateLink() {
+                let username = document.getElementById('instaID').value.trim();
+
+            if (username === "") {
+                alert("Please ek ID daalein!");
+                return;
+            }
+
+                        if (username.startsWith('@')) {
+                username = username.substring(1);
+            }
+
+                        let profileLink = "https://www.instagram.com/" + username + "/";
+
+                        document.getElementById('result').innerHTML = `
+                <p>Aapka Profile Link:</p>
+                <a href="${profileLink}" target="_blank">${profileLink}</a>
+            `;
+        }
+    </script>
+
+</body>
+</html>
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P39VD72ZBD"></script>
 <script>
