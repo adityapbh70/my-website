@@ -1,118 +1,58 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <!DOCTYPE html>
-<html>
-<head>
-    <title>Insta Link Generator</title>
+    <meta charset="UTF-8">
+    <title>Insta DP Viewer</title>
     <style>
-        body { font-family: sans-serif; text-align: center; margin-top: 50px; }
-        input { padding: 10px; width: 250px; border: 1px solid #ccc; border-radius: 5px; }
-        button { padding: 10px 20px; background-color: #E1306C; color: white; border: none; border-radius: 5px; cursor: pointer; }
-        #result { margin-top: 20px; font-weight: bold; }
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #f0f2f5; padding: 50px; }
+        .container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: inline-block; }
+        input { padding: 12px; width: 250px; border: 1px solid #ddd; border-radius: 5px; outline: none; }
+        button { padding: 12px 20px; background-color: #bc2a8d; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        button:hover { background-color: #8a1f6a; }
+        #profile-pic { margin-top: 20px; display: none; width: 150px; height: 150px; border-radius: 50%; border: 3px solid #bc2a8d; object-fit: cover; }
+        #error-msg { color: red; margin-top: 10px; display: none; }
     </style>
 </head>
 <body>
 
-    <h2>Instagram Profile Finder</h2>
-    
-    <input type="text" id="instaID" placeholder="Instagram ID daalein (e.g. virat.kohli)">
-    
-    <button onclick="generateLink()">Link Banayein</button>
+    <div class="container">
+        <h2>Insta DP Viewer</h2>
+        <p>Instagram ID daalein aur photo dekhein:</p>
+        
+        <input type="text" id="instaID" placeholder="Username jaise: virat.kohli">
+        <button onclick="showPhoto()">Photo Dekhein</button>
 
-    <div id="result">
-        </div>
+        <br>
+        <img id="profile-pic" src="" alt="Profile Picture">
+        <p id="error-msg">User nahi mila ya account private hai!</p>
+    </div>
 
     <script>
-        function generateLink() {
-                let username = document.getElementById('instaID').value.trim();
+        function showPhoto() {
+            let username = document.getElementById('instaID').value.trim();
+            let imgTag = document.getElementById('profile-pic');
+            let errorMsg = document.getElementById('error-msg');
 
             if (username === "") {
-                alert("Please ek ID daalein!");
+                alert("Pehle ID toh likhiye!");
                 return;
             }
 
-                        if (username.startsWith('@')) {
-                username = username.substring(1);
-            }
+            // Hum ek free service (pfp.sh) ka use kar rahe hain jo DP fetch karti hai
+            let photoUrl = `https://pfp.sh/v1/users/profile-picture/${username}`;
 
-                        let profileLink = "https://www.instagram.com/" + username + "/";
+            // Image load karne ki koshish
+            imgTag.src = photoUrl;
+            imgTag.style.display = "inline-block";
+            errorMsg.style.display = "none";
 
-                        document.getElementById('result').innerHTML = `
-                <p>Aapka Profile Link:</p>
-                <a href="${profileLink}" target="_blank">${profileLink}</a>
-            `;
+            // Agar image load nahi hui (Invalid ID)
+            imgTag.onerror = function() {
+                imgTag.style.display = "none";
+                errorMsg.style.display = "block";
+            };
         }
     </script>
 
 </body>
-</html>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-P39VD72ZBD"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-P39VD72ZBD');
-</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aditya | Professional Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-    <div class="glass-card">
-        <div class="image-container">
-            <img src="https://i.postimg.cc/1tvzbL36/IMG_20250825_WA0006.jpg" alt="Aditya" class="profile-img">
-        </div>
-        
-        <h1 class="typing">Aditya</h1>
-        <p class="role">Frontend Developer & Designer</p>
-
-        <div class="skills">
-            <span>HTML5</span>
-            <span>CSS3</span>
-            <span>Git</span>
-        </div>
-
-        <div class="social-links">
-            <a href="https://www.instagram.com/aditya.up72" class="btn insta">Instagram</a>
-        </div>
-<div class="contact-form">
-    <h3>Contact Me</h3>
-    <form id="my-form" action="https://formspree.io/f/YOUR_ID_HERE" method="POST">
-        <input type="text" name="name" placeholder="आपका नाम" required>
-        <input type="email" name="email" placeholder="ईमेल आईडी" required>
-        <textarea name="message" placeholder="आपका संदेश" required></textarea>
-        <button type="submit" class="submit-btn">Send Message</button>
-    </form>
-    <p id="success-msg" style="display:none; color: #fdbb2d; margin-top: 10px; font-weight: bold;">
-        धन्यवाद! आपका मैसेज भेज दिया गया है।
-    </p>
-</div>
-        <div class="contact-form">
-            <h3>Contact Me</h3>
-            <form action="https://formspree.io/f/YOUR_ID_HERE" method="POST">
-                <input type="text" name="name" placeholder="आपका नाम" required>
-                <input type="email" name="email" placeholder="ईमेल आईडी" required>
-                <textarea name="message" placeholder="आपका संदेश" required></textarea>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
-        </div>
-    </div>
-<script>
-    const form = document.getElementById('my-form');
-    const msg = document.getElementById('success-msg');
-
-    form.onsubmit = function(e) {
-              setTimeout(() => {
-            form.style.display = 'none';
-            msg.style.display = 'block';
-        }, 500);
-    };
-</script>
-</body>
-<script src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-Y"></script>
 </html>
