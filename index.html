@@ -1,56 +1,66 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Insta DP Viewer</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; background-color: #f0f2f5; padding: 50px; }
-        .container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: inline-block; }
-        input { padding: 12px; width: 250px; border: 1px solid #ddd; border-radius: 5px; outline: none; }
-        button { padding: 12px 20px; background-color: #bc2a8d; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
-        button:hover { background-color: #8a1f6a; }
-        #profile-pic { margin-top: 20px; display: none; width: 150px; height: 150px; border-radius: 50%; border: 3px solid #bc2a8d; object-fit: cover; }
-        #error-msg { color: red; margin-top: 10px; display: none; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; background: #fafafa; padding: 20px; }
+        .box { background: white; border: 1px solid #dbdbdb; padding: 30px; display: inline-block; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        h2 { color: #262626; }
+        input { padding: 12px; border: 1px solid #dbdbdb; border-radius: 4px; width: 200px; background: #fafafa; }
+        button { padding: 12px 20px; background: #0095f6; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; margin-left: 5px; }
+        button:hover { background: #1877f2; }
+        #photo-frame { margin-top: 20px; }
+        #insta-img { width: 150px; height: 150px; border-radius: 50%; border: 2px solid #e1306c; display: none; object-fit: cover; }
+        .loader { display: none; color: #8e8e8e; margin-top: 10px; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h2>Insta DP Viewer</h2>
-        <p>Instagram ID daalein aur photo dekhein:</p>
+    <div class="box">
+        <h2>Insta DP Finder</h2>
+        <input type="text" id="username" placeholder="Username daalein...">
+        <button onclick="getPhoto()">Dekhein</button>
         
-        <input type="text" id="instaID" placeholder="Username jaise: virat.kohli">
-        <button onclick="showPhoto()">Photo Dekhein</button>
-
-        <br>
-        <img id="profile-pic" src="" alt="Profile Picture">
-        <p id="error-msg">User nahi mila ya account private hai!</p>
+        <div id="photo-frame">
+            <p id="loading" class="loader">Dhoond raha hoon...</p>
+            <img id="insta-img" src="" alt="Profile Picture">
+        </div>
     </div>
 
     <script>
-        function showPhoto() {
-            let username = document.getElementById('instaID').value.trim();
-            let imgTag = document.getElementById('profile-pic');
-            let errorMsg = document.getElementById('error-msg');
+        function getPhoto() {
+            const user = document.getElementById('username').value.trim();
+            const img = document.getElementById('insta-img');
+            const loadText = document.getElementById('loading');
 
-            if (username === "") {
-                alert("Pehle ID toh likhiye!");
+            if (user === "") {
+                alert("Pehle username likhein!");
                 return;
             }
 
-            // Hum ek free service (pfp.sh) ka use kar rahe hain jo DP fetch karti hai
-            let photoUrl = `https://pfp.sh/v1/users/profile-picture/${username}`;
+            // Loading dikhayein
+            img.style.display = "none";
+            loadText.style.display = "block";
 
-            // Image load karne ki koshish
-            imgTag.src = photoUrl;
-            imgTag.style.display = "inline-block";
-            errorMsg.style.display = "none";
+            // Naya Tarika: Hum ek open redirector use kar rahe hain
+            // Note: Instagram private accounts ki DP kabhi-kabhi allow nahi karta
+            const url = `https://www.instagram.com/${user}/?__a=1&__d=dis`;
+            
+            // Sabse aasaan aur naya jugad (Thothub ya instasaved jaisi API)
+            // Abhi ke liye hum image proxy use karenge
+            const finalUrl = `https://api.bhau.com/instagram/dp?username=${user}`; // Ye ek temporary helper link hai
 
-            // Agar image load nahi hui (Invalid ID)
-            imgTag.onerror = function() {
-                imgTag.style.display = "none";
-                errorMsg.style.display = "block";
-            };
+            img.src = finalUrl;
+
+            img.onload = function() {
+                loadText.style.display = "none";
+                img.style.display = "inline-block";
+            }
+
+            img.onerror = function() {
+                loadText.style.display = "none";
+                alert("Maaf kijiye, Instagram ne is photo ko block kar diya hai ya account nahi mila.");
+            }
         }
     </script>
 
