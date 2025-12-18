@@ -39,6 +39,20 @@
         </div>
         <a href="#" class="earn-btn">Task Shuru Karein</a>
     </div>
+<script>
+    // Shuruat mein balance zero hai
+    let currentBalance = 0;
 
+    function addMoney(amount) {
+        // 1. Purane balance mein naya amount jodein
+        currentBalance = currentBalance + amount;
+
+        // 2. Screen par dikhne wale balance ko update karein
+        document.getElementById('balance-amount').innerText = "₹" + currentBalance.toFixed(2);
+
+        // 3. User ko message dikhayein
+        alert("Mubarak ho! Aapne ₹" + amount + " kama liye hain.");
+    }
+</script>
 </body>
 </html>
