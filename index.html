@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
+    <!DOCTYPE html>
+<html>
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YOURID"></script>
+    ...
+    <title>Meri Website</title>
+</head>
+<body>
+    <h1>Welcome to My Site</h1>
+</body>
+</html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aditya | Professional Portfolio</title>
@@ -25,7 +36,18 @@
         <div class="social-links">
             <a href="https://www.instagram.com/aditya.up72" class="btn insta">Instagram</a>
         </div>
-
+<div class="contact-form">
+    <h3>Contact Me</h3>
+    <form id="my-form" action="https://formspree.io/f/YOUR_ID_HERE" method="POST">
+        <input type="text" name="name" placeholder="आपका नाम" required>
+        <input type="email" name="email" placeholder="ईमेल आईडी" required>
+        <textarea name="message" placeholder="आपका संदेश" required></textarea>
+        <button type="submit" class="submit-btn">Send Message</button>
+    </form>
+    <p id="success-msg" style="display:none; color: #fdbb2d; margin-top: 10px; font-weight: bold;">
+        धन्यवाद! आपका मैसेज भेज दिया गया है।
+    </p>
+</div>
         <div class="contact-form">
             <h3>Contact Me</h3>
             <form action="https://formspree.io/f/YOUR_ID_HERE" method="POST">
@@ -36,6 +58,17 @@
             </form>
         </div>
     </div>
+<script>
+    const form = document.getElementById('my-form');
+    const msg = document.getElementById('success-msg');
 
+    form.onsubmit = function(e) {
+              setTimeout(() => {
+            form.style.display = 'none';
+            msg.style.display = 'block';
+        }, 500);
+    };
+</script>
 </body>
+<script src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-Y"></script>
 </html>

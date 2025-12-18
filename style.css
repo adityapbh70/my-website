@@ -102,3 +102,53 @@ body {
     font-weight: bold;
     cursor: pointer;
 }
+/* --- फॉर्म का नया और साफ स्टाइल (इसे फाइल के अंत में जोड़ें) --- */
+.contact-form {
+    margin-top: 25px;
+    text-align: left;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 20px;
+}
+
+.contact-form h3 { 
+    color: white; 
+    font-size: 16px; 
+    margin-bottom: 12px; 
+    text-align: center; 
+}
+
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s ease;
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: #fdbb2d;
+    box-shadow: 0 0 10px rgba(253, 187, 45, 0.3);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 50px;
+    border: none;
+    background: #fdbb2d;
+    color: #1a2a6c;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background: white;
+    transform: translateY(-3px);
+}
