@@ -1,0 +1,17 @@
+    .task-card {
+        border: 1px solid #ddd;
+        padding: 20px;
+        margin: 10px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #f9f9f9;
+    }
+    .earn-btn {
+        background-color: #28a745;
+        color: white;
+        padding: 10px 15px;
+        text-decoration: none;
+        border-radius: 5px;
+    }
