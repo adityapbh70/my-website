@@ -15,3 +15,42 @@
         text-decoration: none;
         border-radius: 5px;
     }
+/* Wallet Container ka Style */
+.wallet-container {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Blue-Purple Gradient */
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.wallet-info span {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.wallet-info h2 {
+    margin: 5px 0 0 0;
+    font-size: 28px;
+}
+
+/* Withdraw Button ka Style */
+.withdraw-btn {
+    background-color: #ffc107; /* Yellow color */
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.withdraw-btn:hover {
+    background-color: #e0a800;
+    transform: scale(1.05);
+}
