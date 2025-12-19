@@ -62,6 +62,21 @@
         // 3. User ko message dikhayein
         alert("Mubarak ho! Aapne ₹" + amount + " kama liye hain.");
     }
+    async function fetchBalance() {
+    try {
+        // Server se balance mangwana
+        const response = await fetch('http://localhost:3000/balance');
+        const data = await response.json();
+        
+        // Website par balance update karna
+        document.getElementById('balance-amount').innerText = "₹" + data.balance;
+    } catch (error) {
+        console.log("Server connect nahi ho paya", error);
+    }
+}
+
+// Page load hote hi balance check karein
+window.onload = fetchBalance;
 </script>
 </body>
 </html>
