@@ -1,0 +1,73 @@
+/* Poore page ka look */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e5ddd5; /* WhatsApp jaisa background */
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Header styling */
+h2 {
+    background-color: #075e54;
+    color: white;
+    margin: 0;
+    padding: 15px;
+    text-align: center;
+}
+
+/* Chat window jahan messages dikhenge */
+#chat-box {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Message bubbles ka style */
+.message {
+    max-width: 70%;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.sent {
+    align-self: flex-end;
+    background-color: #dcf8c6; /* Light green for your messages */
+}
+
+.received {
+    align-self: flex-start;
+    background-color: white; /* White for others' messages */
+}
+
+/* Input area styling niche ki taraf */
+#input-area {
+    background: #f0f0f0;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+}
+
+input {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    outline: none;
+}
+
+button {
+    background-color: #075e54;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+}

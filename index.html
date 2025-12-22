@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mera Chat App</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h2 style="text-align: center;">Dost Chat</h2>
+
+    <div id="chat-box">
+        <p><strong>Admin:</strong> Welcome to the chat!</p>
+        <p><strong>Dost:</strong> Hey, kaise ho?</p>
+    </div>
+
+    <div id="input-area">
+        <input type="text" id="user-msg" placeholder="Type a message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        // Message bhejne ka chota sa logic (sirf aapki screen par dikhega)
+        function sendMessage() {
+            let msgInput = document.getElementById("user-msg");
+            let chatBox = document.getElementById("chat-box");
+            
+            if(msgInput.value !== "") {
+                let newMsg = document.createElement("p");
+                newMsg.innerHTML = "<strong>Me:</strong> " + msgInput.value;
+                chatBox.appendChild(newMsg);
+                msgInput.value = ""; // Box saaf kar do
+                chatBox.scrollTop = chatBox.scrollHeight; // Niche scroll karo
+            }
+        }
+    </script>
+
+</body>
+</html>
