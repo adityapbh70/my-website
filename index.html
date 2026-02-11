@@ -2,31 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Pro Gamer - Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Snake | Gaming Portal</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <header>
-        <nav>
-            <div class="logo">GAMERX</div>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Games</a></li>
-                <li><a href="#">News</a></li>
-            </ul>
-        </nav>
+        <div class="logo">NEON<span>SNAKE</span></div>
+        <div class="score-container">Score: <span id="scoreVal">0</span></div>
     </header>
 
-    <section class="hero">
-        <h1>Welcome to the Ultimate Arena</h1>
-        <p>Latest Games, Best Reviews.</p>
-        <button>Explore Now</button>
-    </section>
+    <main>
+        <div class="game-area">
+            <canvas id="snakeGame" width="400" height="400"></canvas>
+            
+            <div id="overlay">
+                <h2>GAME OVER</h2>
+                <button onclick="resetGame()">Play Again</button>
+            </div>
+        </div>
 
-    <section class="games-grid">
-        <div class="card">Game 1</div>
-        <div class="card">Game 2</div>
-        <div class="card">Game 3</div>
-    </section>
+        <div class="controls">
+            <p>Use <b>Arrow Keys</b> to Move</p>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
