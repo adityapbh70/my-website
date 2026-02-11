@@ -1,115 +1,46 @@
-/* --- Global Styles --- */
-body {
-    background-color: #121212;
-    color: white;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* --- Header / Menu --- */
-.main-nav {
-    background-color: #000;
-    padding: 15px 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px solid #8fb01c;
-}
-
-.logo { font-size: 24px; font-weight: bold; letter-spacing: 2px; }
-.logo span { color: #8fb01c; }
-
-.main-nav ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-}
-
-.main-nav ul li { margin-left: 20px; }
-.main-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 14px;
-    text-transform: uppercase;
-    transition: 0.3s;
-}
-
-.main-nav ul li a:hover { color: #8fb01c; }
-
-/* --- Game Layout --- */
-.game-wrapper {
-    flex: 1; /* Ye game ko beech mein rakhega */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-.phone-body {
-    background: #333;
-    padding: 15px;
-    border-radius: 15px;
-    border: 5px solid #444;
-}
-
-.phone-screen {
-    background-color: #8fb01c;
-    padding: 10px;
-    border: 8px solid #111;
-    position: relative;
-}
-
-#scoreBoard {
-    color: #222;
-    font-family: 'Courier New', monospace;
-    font-size: 22px;
-    font-weight: bold;
-    text-align: right;
-    margin-bottom: 5px;
-}
-
-canvas { background-color: #8fb01c; display: block; }
-
-/* --- Game Over Popup --- */
+/* Purana Game Over hata kar ye naya wala paste karein */
 #gameOver {
     position: absolute;
-    top: 50%; left: 50%;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.9);
-    padding: 20px;
+    background: rgba(17, 17, 17, 0.95); /* Darker background for focus */
+    padding: 30px;
     text-align: center;
-    border: 2px solid #8fb01c;
-    display: none;
+    border: 4px double #222; /* Double border for retro look */
+    display: none; 
     flex-direction: column;
+    z-index: 10;
+    width: 250px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
-#gameOver h1 { color: #8fb01c; margin: 0; }
+#gameOver h1 { 
+    color: #222; 
+    background: #8fb01c; /* Inverse color for retro style */
+    margin: 0 0 15px 0; 
+    padding: 5px;
+    font-size: 24px;
+}
+
+#gameOver p {
+    color: #8fb01c;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
 
 button {
     background: #8fb01c;
-    border: none;
-    padding: 8px 15px;
-    cursor: pointer;
+    color: #222;
+    border: 2px solid #222;
+    padding: 10px 20px;
     font-weight: bold;
-    margin-top: 10px;
+    font-family: 'Courier New', monospace;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
-/* --- Footer --- */
-.main-footer {
-    background-color: #000;
-    text-align: center;
-    padding: 15px;
-    font-size: 13px;
-    color: #666;
-    border-top: 1px solid #222;
-}
-
-.controls-hint {
-    color: #888;
-    font-size: 11px;
-    text-align: center;
-    margin-top: 10px;
+button:hover {
+    background: #222;
+    color: #8fb01c;
 }
