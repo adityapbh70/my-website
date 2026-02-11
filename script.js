@@ -98,4 +98,7 @@ function resetGame() {
 }
 
 // Start Game
-let gameInterval = setInterval(draw, 300);
+function checkLevel() {
+    if (score > 10) {
+        clearInterval(gameInterval);
+        gameInterval = setInterval(draw, 150);
