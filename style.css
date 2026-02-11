@@ -1,69 +1,46 @@
-body {
-    background-color: #1a1a1a;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: 'Courier New', Courier, monospace;
-}
-
-.phone-body {
-    background: #3a3a3a;
-    padding: 20px;
-    border-radius: 20px;
-    border: 4px solid #555;
-    position: relative;
-}
-
-.phone-screen {
-    background-color: #8fb01c;
-    padding: 15px;
-    border: 8px solid #111;
-    position: relative;
-}
-
-#scoreBoard {
-    color: #222;
-    font-size: 24px;
-    font-weight: bold;
-    text-align: right;
-    margin-bottom: 5px;
-}
-
-canvas {
-    display: block;
-    background-color: #8fb01c;
-    outline: 2px solid #222;
-}
-
+/* Purana Game Over hata kar ye naya wala paste karein */
 #gameOver {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(143, 176, 28, 0.9);
-    padding: 20px;
+    background: rgba(17, 17, 17, 0.95); /* Darker background for focus */
+    padding: 30px;
     text-align: center;
-    border: 3px solid #222;
-    display: none; /* Game over hone par JS se show hoga */
+    border: 4px double #222; /* Double border for retro look */
+    display: none; 
     flex-direction: column;
+    z-index: 10;
+    width: 250px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
-#gameOver h1 { color: #222; margin: 0 0 10px 0; }
+#gameOver h1 { 
+    color: #222; 
+    background: #8fb01c; /* Inverse color for retro style */
+    margin: 0 0 15px 0; 
+    padding: 5px;
+    font-size: 24px;
+}
+
+#gameOver p {
+    color: #8fb01c;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
 
 button {
-    background: #222;
-    color: #8fb01c;
-    border: none;
-    padding: 10px;
+    background: #8fb01c;
+    color: #222;
+    border: 2px solid #222;
+    padding: 10px 20px;
     font-weight: bold;
+    font-family: 'Courier New', monospace;
     cursor: pointer;
+    transition: 0.2s;
 }
 
-.controls-hint {
-    margin-top: 10px;
-    color: #888;
-    text-align: center;
-    font-size: 12px;
+button:hover {
+    background: #222;
+    color: #8fb01c;
 }
