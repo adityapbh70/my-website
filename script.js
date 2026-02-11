@@ -12,6 +12,8 @@ let food = {
 };
 let d = "RIGHT";
 let gameRunning = true;
+let speed = 200; // Shuruati speed (Slow)
+let gameLoop;
 
 document.addEventListener("keydown", direction);
 
@@ -49,6 +51,7 @@ function draw() {
     if(snakeX == food.x && snakeY == food.y) {
         score++;
         scoreDisplay.innerText = score.toString().padStart(4, '0');
+        updateSpeed(); // Har point par speed check karein
         food = {
             x: Math.floor(Math.random() * 19) * box,
             y: Math.floor(Math.random() * 19) * box
@@ -61,11 +64,20 @@ function draw() {
 
     if(snakeX < 0 || snakeY < 0 || snakeX >= canvas.width || snakeY >= canvas.height || collision(newHead, snake)) {
         gameRunning = false;
-        clearInterval(game);
-        gameOverDiv.style.display = "flex";
+        clearInterval(gameLoop);
+        gameOverDiv.style.display = "flex"; // Center mein notification dikhayega
     }
 
     snake.unshift(newHead);
+}
+
+// Speed badhane ka logic
+function updateSpeed() {
+    if (score % 5 === 0 && speed > 50) { // Har 5 score par speed badhegi
+        speed -= 10; 
+        clearInterval(gameLoop);
+        gameLoop = setInterval(draw, speed);
+    }
 }
 
 function collision(head, array) {
@@ -79,4 +91,5 @@ function resetGame() {
     location.reload();
 }
 
-let game = setInterval(draw, 150);
+// Game start karein
+gameLoop = setInterval(draw, speed);
