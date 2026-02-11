@@ -1,59 +1,59 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
+/* Dark Gaming Theme */
 body {
     background-color: #050505;
     color: white;
     font-family: 'Segoe UI', sans-serif;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-}
-
-header {
-    width: 100%;
-    padding: 20px 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #111;
-    border-bottom: 2px solid #00ff88;
-}
-
-.logo { font-weight: 800; font-size: 1.5rem; letter-spacing: 2px; }
-.logo span { color: #00ff88; text-shadow: 0 0 10px #00ff88; }
-
-.game-area {
-    position: relative;
-    margin-top: 50px;
-    border: 5px solid #222;
-    box-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
-}
-
-canvas {
-    display: block;
-    background: #000;
-}
-
-#overlay {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.8);
-    display: none; /* Game over hone par dikhega */
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
-#overlay h2 { color: #ff0055; font-size: 3rem; margin-bottom: 20px; }
+.game-container {
+    text-align: center;
+    position: relative;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+    margin-bottom: 15px;
+}
+
+.logo { font-size: 24px; font-weight: bold; }
+.logo span { color: #00ff88; text-shadow: 0 0 10px #00ff88; }
+
+#scoreBoard { font-size: 20px; color: #fff; }
+
+canvas {
+    background-color: #000;
+    border: 3px solid #222;
+    box-shadow: 0 0 25px rgba(0, 255, 136, 0.1);
+}
+
+#gameOver {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    padding: 30px;
+    border: 2px solid #ff0055;
+    border-radius: 10px;
+    display: none; /* Starting mein hidden */
+    flex-direction: column;
+}
 
 button {
-    padding: 10px 25px;
     background: #00ff88;
     border: none;
+    padding: 10px 20px;
     font-weight: bold;
     cursor: pointer;
+    margin-top: 15px;
     border-radius: 5px;
 }
 
-.controls { margin-top: 20px; color: #888; }
+.controls-hint { margin-top: 15px; color: #555; font-size: 14px; }
