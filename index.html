@@ -3,35 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neon Snake Game</title>
+    <title>Retro Snake Game</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <div class="phone-body">
-    <div class="phone-screen">
-        <div id="scoreBoard">0000</div>
-        <canvas id="gameCanvas" width="400" height="400"></canvas>
-    </div>
-</div>
-
-    <div class="game-container">
-        <div class="header">
-            <div class="logo">NEON<span>SNAKE</span></div>
-            <div id="scoreBoard">Score: 0</div>
+        <div class="phone-screen">
+            <div id="scoreBoard">0000</div>
+            <canvas id="gameCanvas" width="400" height="400"></canvas>
+            
+            <div id="gameOver">
+                <h1>GAME OVER</h1>
+                <button onclick="resetGame()">RETRY</button>
+            </div>
         </div>
-
-        <canvas id="gameCanvas" width="400" height="400"></canvas>
-
-        <div id="gameOver">
-            <h1>GAME OVER</h1>
-            <p id="finalScore"></p>
-            <button onclick="resetGame()">PLAY AGAIN</button>
-        </div>
-
         <div class="controls-hint">Use Arrow Keys to Move</div>
     </div>
 
     <script src="script.js"></script>
 </body>
 </html>
-
