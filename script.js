@@ -1,17 +1,28 @@
-const canvas = document.getElementById("snakeGame");
+const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
-const scoreVal = document.getElementById("scoreVal");
-const overlay = document.getElementById("overlay");
+const scoreDisplay = document.getElementById("scoreBoard");
+const gameOverScreen = document.getElementById("gameOver");
+const finalScoreText = document.getElementById("finalScore");
 
-let box = 20;
+const box = 20;
 let score = 0;
-let snake = [{ x: 10 * box, y: 10 * box }];
+let gameActive = true;
+
+// Snake Initial State
+let snake = [
+    { x: 9 * box, y: 10 * box },
+    { x: 8 * box, y: 10 * box }
+];
+
+// Food Logic
 let food = {
     x: Math.floor(Math.random() * 19 + 1) * box,
     y: Math.floor(Math.random() * 19 + 1) * box
 };
-let d;
 
+let d = "RIGHT";
+
+// Controls
 document.addEventListener("keydown", direction);
 
 function direction(event) {
@@ -22,9 +33,13 @@ function direction(event) {
 }
 
 function draw() {
+    if(!gameActive) return;
+
+    // Clear Screen
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+    // Draw Snake
     for(let i = 0; i < snake.length; i++) {
         ctx.fillStyle = (i == 0) ? "#00ff88" : "#008844";
         ctx.fillRect(snake[i].x, snake[i].y, box, box);
@@ -32,23 +47,24 @@ function draw() {
         ctx.strokeRect(snake[i].x, snake[i].y, box, box);
     }
 
+    // Draw Food
     ctx.fillStyle = "#ff0055";
-    ctx.shadowBlur = 10;
-    ctx.shadowColor = "#ff0055";
     ctx.fillRect(food.x, food.y, box, box);
-    ctx.shadowBlur = 0;
 
+    // Old Head Position
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
 
+    // Direction logic
     if( d == "LEFT") snakeX -= box;
     if( d == "UP") snakeY -= box;
     if( d == "RIGHT") snakeX += box;
     if( d == "DOWN") snakeY += box;
 
+    // Eat Food?
     if(snakeX == food.x && snakeY == food.y) {
         score++;
-        scoreVal.innerText = score;
+        scoreDisplay.innerText = "Score: " + score;
         food = {
             x: Math.floor(Math.random() * 19 + 1) * box,
             y: Math.floor(Math.random() * 19 + 1) * box
@@ -59,9 +75,12 @@ function draw() {
 
     let newHead = { x: snakeX, y: snakeY };
 
+    // Death Conditions
     if(snakeX < 0 || snakeY < 0 || snakeX >= canvas.width || snakeY >= canvas.height || collision(newHead, snake)) {
-        clearInterval(game);
-        overlay.style.display = "flex";
+        gameActive = false;
+        clearInterval(gameInterval);
+        finalScoreText.innerText = "Score: " + score;
+        gameOverScreen.style.display = "flex";
     }
 
     snake.unshift(newHead);
@@ -75,7 +94,8 @@ function collision(head, array) {
 }
 
 function resetGame() {
-    location.reload(); // Page refresh karke game reset
+    location.reload();
 }
 
-let game = setInterval(draw, 100);
+// Start Game
+let gameInterval = setInterval(draw, 100);
