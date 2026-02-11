@@ -1,17 +1,17 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 const scoreDisplay = document.getElementById("scoreBoard");
+const gameOverDiv = document.getElementById("gameOver");
 
 const box = 20;
 let score = 0;
 let snake = [{ x: 9 * box, y: 10 * box }];
-let d = "RIGHT";
-
-// Nokia wala khana (aksar ek chota dot hota tha)
 let food = {
     x: Math.floor(Math.random() * 19) * box,
     y: Math.floor(Math.random() * 19) * box
 };
+let d = "RIGHT";
+let gameRunning = true;
 
 document.addEventListener("keydown", direction);
 
@@ -23,17 +23,16 @@ function direction(event) {
 }
 
 function draw() {
-    // Screen clear
+    if(!gameRunning) return;
+
     ctx.fillStyle = "#8fb01c";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     for(let i = 0; i < snake.length; i++) {
-        // Snake ka rang (Dark Grey/Black pixels)
         ctx.fillStyle = "#222";
-        ctx.fillRect(snake[i].x, snake[i].y, box - 2, box - 2); // Gap se pixelated look aayega
+        ctx.fillRect(snake[i].x, snake[i].y, box - 2, box - 2);
     }
 
-    // Food (Ek pixelated dot)
     ctx.fillStyle = "#222";
     ctx.beginPath();
     ctx.arc(food.x + box/2, food.y + box/2, 5, 0, Math.PI * 2);
@@ -49,7 +48,7 @@ function draw() {
 
     if(snakeX == food.x && snakeY == food.y) {
         score++;
-        scoreDisplay.innerText = "Score: " + score;
+        scoreDisplay.innerText = score.toString().padStart(4, '0');
         food = {
             x: Math.floor(Math.random() * 19) * box,
             y: Math.floor(Math.random() * 19) * box
@@ -60,11 +59,10 @@ function draw() {
 
     let newHead = { x: snakeX, y: snakeY };
 
-    // Game Over Logic
     if(snakeX < 0 || snakeY < 0 || snakeX >= canvas.width || snakeY >= canvas.height || collision(newHead, snake)) {
+        gameRunning = false;
         clearInterval(game);
-        alert("Game Over! Score: " + score);
-        location.reload();
+        gameOverDiv.style.display = "flex";
     }
 
     snake.unshift(newHead);
@@ -77,5 +75,8 @@ function collision(head, array) {
     return false;
 }
 
-// Keypad phones ki speed thodi slow hoti thi
+function resetGame() {
+    location.reload();
+}
+
 let game = setInterval(draw, 150);
