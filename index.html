@@ -3,25 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💖Apple💖 Snake Game</title>
+    <title>Retro Gaming Portal</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="phone-body">
-        <div class="phone-screen">
-            <div id="scoreBoard">0000</div>
-            <canvas id="gameCanvas" width="400" height="400"></canvas>
-            
-            <div id="gameOver">
-                <h1>GAME OVER</h1>
-                <button onclick="resetGame()">RETRY</button>
+    <header class="main-nav">
+        <div class="logo">RETRO<span>GAMES</span></div>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">High Scores</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </header>
+
+    <main class="game-wrapper">
+        <div class="phone-body">
+            <div class="phone-screen">
+                <div id="scoreBoard">0000</div>
+                <canvas id="gameCanvas" width="400" height="400"></canvas>
+                
+                <div id="gameOver">
+                    <h1>GAME OVER</h1>
+                    <p id="finalScoreDisplay"></p>
+                    <button onclick="resetGame()">RETRY</button>
+                </div>
             </div>
+            <div class="controls-hint">Use Arrow Keys to Move</div>
         </div>
-        <div class="controls-hint">Use Arrow Keys to Move</div>
-    </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Retro Gaming Portal | Made for Pro Gamers</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
 </html>
-
