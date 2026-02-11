@@ -98,4 +98,4 @@ function resetGame() {
 }
 
 // Start Game
-let gameInterval = setInterval(draw, 100);
+let gameInterval = setInterval(draw, 200);
