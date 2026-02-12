@@ -27,69 +27,56 @@ function direction(event) {
 function draw() {
     if(!gameRunning) return;
 
+    // Background
     ctx.fillStyle = "#8fb01c";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+    // --- Snake Drawing Logic ---
     for(let i = 0; i < snake.length; i++) {
-        ctx.fillStyle = "#222";
-        ctx.fillRect(snake[i].x, snake[i].y, box - 2, box - 2);
+        ctx.fillStyle = "#222"; // Snake Color
+        
+        // Rounded corners banane ke liye
+        let radius = (i === 0) ? 8 : 4; // Head thoda zyada round hoga
+        drawRoundedRect(ctx, snake[i].x, snake[i].y, box - 1, box - 1, radius);
+
+        // Sirf Head (i === 0) par aankhein (Eyes) lagao
+        if (i === 0) {
+            ctx.fillStyle = "#8fb01c"; // Aankhon ka rang screen jaisa
+            
+            // Direction ke hisab se aankhein set karna
+            if (d === "RIGHT" || d === "LEFT") {
+                ctx.fillRect(snake[i].x + 12, snake[i].y + 4, 3, 3); // Top Eye
+                ctx.fillRect(snake[i].x + 12, snake[i].y + 12, 3, 3); // Bottom Eye
+            } else {
+                ctx.fillRect(snake[i].x + 4, snake[i].y + 12, 3, 3); // Left Eye
+                ctx.fillRect(snake[i].x + 12, snake[i].y + 12, 3, 3); // Right Eye
+            }
+            ctx.fillStyle = "#222"; // Color wapas set karein
+        }
     }
 
+    // Food (Retro Style)
     ctx.fillStyle = "#222";
-    ctx.beginPath();
-    ctx.arc(food.x + box/2, food.y + box/2, 5, 0, Math.PI * 2);
-    ctx.fill();
+    ctx.fillRect(food.x + 4, food.y + 4, box - 8, box - 8); 
 
+    // ... baaki movement wala code same rahega ...
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
-
-    if(d == "LEFT") snakeX -= box;
-    if(d == "UP") snakeY -= box;
-    if(d == "RIGHT") snakeX += box;
-    if(d == "DOWN") snakeY += box;
-
-    if(snakeX == food.x && snakeY == food.y) {
-        score++;
-        scoreDisplay.innerText = score.toString().padStart(4, '0');
-        updateSpeed(); // Har point par speed check karein
-        food = {
-            x: Math.floor(Math.random() * 19) * box,
-            y: Math.floor(Math.random() * 19) * box
-        };
-    } else {
-        snake.pop();
-    }
-
-    let newHead = { x: snakeX, y: snakeY };
-
-    if(snakeX < 0 || snakeY < 0 || snakeX >= canvas.width || snakeY >= canvas.height || collision(newHead, snake)) {
-        gameRunning = false;
-        clearInterval(gameLoop);
-        gameOverDiv.style.display = "flex"; // Center mein notification dikhayega
-    }
-
-    snake.unshift(newHead);
+    // (Aage ka code jo pehle tha wahi use karein)
 }
 
-// Speed badhane ka logic
-function updateSpeed() {
-    if (score % 5 === 0 && speed > 50) { // Har 5 score par speed badhegi
-        speed -= 10; 
-        clearInterval(gameLoop);
-        gameLoop = setInterval(draw, speed);
-    }
+// Rounded rectangles banane ke liye helper function
+function drawRoundedRect(ctx, x, y, width, height, radius) {
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y);
+    ctx.lineTo(x + width - radius, y);
+    ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+    ctx.lineTo(x + width, y + height - radius);
+    ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+    ctx.lineTo(x + radius, y + height);
+    ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+    ctx.lineTo(x, y + radius);
+    ctx.quadraticCurveTo(x, y, x + radius, y);
+    ctx.closePath();
+    ctx.fill();
 }
-
-function collision(head, array) {
-    for(let i = 0; i < array.length; i++) {
-        if(head.x == array[i].x && head.y == array[i].y) return true;
-    }
-    return false;
-}
-
-function resetGame() {
-    location.reload();
-}
-
-// Game start karein
-gameLoop = setInterval(draw, speed);
